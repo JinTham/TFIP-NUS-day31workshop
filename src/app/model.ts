@@ -13,10 +13,14 @@ export class Card {
     }
 }
 
-const SUITS = ["Heart","Spade","Diamond","Club"]
+export interface Player {
+    name: string
+    hand: Card[]
+}
+
+const SUITS = ["Heart","Spade","Diamond","Clover"]
 const RANKS = ["A","2","3","4","5","6","7","8","9","10","J","Q","K"]
 const VALUES= [1,2,3,4,5,6,7,8,9,10,10,10,10]
-
 
 export class DeckOfCards {
 
@@ -33,19 +37,23 @@ export class DeckOfCards {
                 });
             }
         }
+        this.shuffle()
     }
 
     shuffle() {
         for (let k=0;k<this.deckList.length;k++) {
-            let index = this.randNum()
+            let index = this.randNum(this.deckList.length)
             let ori = this.deckList[k]
             this.deckList[k] = this.deckList[index]
             this.deckList[index] = ori
         }
     }
 
-    private randNum(): number {
-        // return any number from 1 to 13 inclusive both sides
-        return Math.floor((Math.random()*13)+1)
+    deal(): Card {
+        return this.deckList.splice(0,1)[0]
+    }
+
+    private randNum(size: number): number {
+        return Math.floor((Math.random()*size))
     }
 }

@@ -1,0 +1,11 @@
+<p>{{player.name | titlecase }}'s hand <img src="assets/images/addButton.jpeg" alt="" [style.width]="'20px'" (click)="drawACard()"></p>
+
+<div>
+    <table>
+        <tr>
+            <td *ngFor="let i of player.hand">
+                <img src="assets/images/{{i.suit|titlecase}}/card_{{i.imageIdx}}_{{i.suit | lowercase}}.png" alt="">
+            </td>
+        </tr>
+    </table>
+</div>
